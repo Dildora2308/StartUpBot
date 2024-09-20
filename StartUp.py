@@ -2,7 +2,6 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-from aiogram.utils import executor
 import asyncio
 import logging
 import sys
@@ -27,14 +26,14 @@ def reply_buttons():
 
 @dp.message(CommandStart())
 async def start_button(message: types.Message):
-    await message.answer(f"Assalomu alaykum, {message.from_user.first_name}", reply_markup=reply_buttons())
+    await message.answer(f"Assalomu alaykum_Xush keldingiz, {message.from_user.first_name}", reply_markup=reply_buttons())
 
 class StartUp(StatesGroup):
     full_name = State()
     phone_number = State()
     project = State()
 
-@dp.message(Command("StartUP idea yuborish"))
+@dp.message(CommandStart("StartUP idea yuborish"))
 async def start(message: types.Message, state: FSMContext):
     await message.answer(text="Ism kiriting:")
     await state.set_state(StartUp.full_name)
